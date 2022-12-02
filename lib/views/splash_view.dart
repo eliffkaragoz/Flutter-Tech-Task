@@ -19,7 +19,7 @@ class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     super.initState();
-
+    //SharedManager.clear(SharedKeys.favorite);
     Timer(const Duration(seconds: 2),
         () => CustomNavigator.goToScreen(context, "/HomeView"));
   }

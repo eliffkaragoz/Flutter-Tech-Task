@@ -27,20 +27,8 @@ class _PokemonListScreenState extends State<PokemonListScreen> {
   @override
   void initState() {
     super.initState();
-    getFavoriteList();
+    FavoriteListState().getFavoriteList(context);
     futurePokemons = PokemonService().getAll();
-  }
-
-  void getFavoriteList() {
-    if (SharedManager.getString(SharedKeys.favorite) != null) {
-      List jsonData =
-          jsonDecode(SharedManager.getString(SharedKeys.favorite).toString());
-      for (var favorite in jsonData) {
-        Provider.of<FavoriteListState>(context, listen: false).favoriteList.add(
-              Result(name: favorite['name'], url: favorite['url']),
-            );
-      }
-    }
   }
 
   @override
@@ -63,8 +51,10 @@ class _PokemonListScreenState extends State<PokemonListScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => PokemonDetailView(
-                                  url: snapshot.data!.results[index].url)),
+                            builder: (context) => PokemonDetailView(
+                              url: snapshot.data!.results[index].url,
+                            ),
+                          ),
                         );
                       },
                       child: Container(
@@ -77,8 +67,7 @@ class _PokemonListScreenState extends State<PokemonListScreen> {
                           trailing: CustomIconButton(
                             onPressed: () {
                               provider.toggleFavorite(
-                                  snapshot.data!.results[index]);
-
+                                  snapshot.data!.results[index], context);
                               String jsonData = jsonEncode(
                                   Provider.of<FavoriteListState>(context,
                                           listen: false)

@@ -51,7 +51,7 @@ class SharedManager {
     return _preferences!.getBool(key.toString()) ?? defValue;
   }
 
-  static Future<bool> removeKey(SharedKeys key) {
-    return _preferences!.remove(key.toString());
+  static Future<bool> clear(SharedKeys key) {
+    return _preferences!.clear();
   }
 }
