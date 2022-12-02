@@ -4,6 +4,9 @@
 
 import 'dart:convert';
 
+import 'package:hive/hive.dart';
+part 'pokemon.g.dart';
+
 Pokemon pokemonFromJson(String str) => Pokemon.fromJson(json.decode(str));
 
 String pokemonToJson(Pokemon data) => json.encode(data.toJson());
@@ -37,13 +40,15 @@ class Pokemon {
       };
 }
 
+@HiveType(typeId: 0)
 class Result {
   Result({
     required this.name,
     required this.url,
   });
-
+  @HiveField(0)
   String name;
+  @HiveField(1)
   String url;
 
   factory Result.fromJson(Map<String, dynamic> json) => Result(

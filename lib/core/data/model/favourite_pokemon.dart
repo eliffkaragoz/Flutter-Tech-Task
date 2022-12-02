@@ -1,11 +1,11 @@
-class FavouritePokemon {
-  int id;
-  String link;
+// class FavouritePokemon {
+//   int id;
+//   String link;
 
-  FavouritePokemon(this.id, this.link);
+//   FavouritePokemon(this.id, this.link);
 
-  Map<String, dynamic> toJson() => {
-        'id': id,
-        'link': link,
-      };
-}
+//   Map<String, dynamic> toJson() => {
+//         'id': id,
+//         'link': link,
+//       };
+// }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import '../../../core/constants/constant_libary.dart';
 import 'core/app.dart';
-import 'core/init/cache/shared_manager.dart';
 
 void main() async {
   SystemChrome.setSystemUIOverlayStyle(
@@ -12,6 +12,7 @@ void main() async {
     ),
   );
   WidgetsFlutterBinding.ensureInitialized();
-  await SharedManager.getInstance();
+  await Hive.initFlutter();
+//  await Hive.openBox('testBox');
   runApp(const App());
 }

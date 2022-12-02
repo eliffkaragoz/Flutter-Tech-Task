@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:kartal/kartal.dart';
 import 'package:pokemon/core/components/button/custom_button_icon.dart';
 import 'package:pokemon/core/components/custom_scaffold.dart';
@@ -8,6 +9,7 @@ import 'package:pokemon/core/components/text/custom_auto_size_text.dart';
 import 'package:pokemon/core/data/enum/shared_keys.dart';
 import 'package:pokemon/core/data/network/services/pokemon_service.dart';
 import 'package:pokemon/core/init/cache/shared_manager.dart';
+import 'package:pokemon/core/init/cache/user_cache_manager.dart';
 import 'package:provider/provider.dart';
 import '../../core/components/custom_circular_progress_indicator.dart';
 import '../../core/data/model/pokemon.dart';
@@ -23,12 +25,21 @@ class PokemonListScreen extends StatefulWidget {
 
 class _PokemonListScreenState extends State<PokemonListScreen> {
   late Future<Pokemon> futurePokemons;
+  late final ICacheManager<Result> cacheManager;
+  List<Result>? _items;
 
   @override
   void initState() {
     super.initState();
-    FavoriteListState().getFavoriteList(context);
     futurePokemons = PokemonService().getAll();
+    cacheManager = UserCacheManager('favoriteBox');
+    fetchDatas();
+  }
+
+  Future<void> fetchDatas() async {
+    await cacheManager.init();
+
+    setState(() {});
   }
 
   @override
@@ -68,12 +79,10 @@ class _PokemonListScreenState extends State<PokemonListScreen> {
                             onPressed: () {
                               provider.toggleFavorite(
                                   snapshot.data!.results[index], context);
-                              String jsonData = jsonEncode(
-                                  Provider.of<FavoriteListState>(context,
-                                          listen: false)
-                                      .favoriteList);
-                              SharedManager.setString(
-                                  SharedKeys.favorite, jsonData);
+                              cacheManager.putItem(
+                                  snapshot.data!.results[index].name,
+                                  snapshot.data!.results[index]);
+                              print(cacheManager.getValues());
                             },
                             icon:
                                 provider.isExist(snapshot.data!.results[index])

@@ -40,20 +40,20 @@ class FavoriteListState extends ChangeNotifier {
     );
   }
 
-  void getFavoriteList(BuildContext context) {
-    if (SharedManager.getString(SharedKeys.favorite) != null) {
-      Provider.of<FavoriteListState>(context, listen: false)
-          .favoriteList
-          .clear();
-      List jsonData =
-          jsonDecode(SharedManager.getString(SharedKeys.favorite).toString());
-      for (var favorite in jsonData) {
-        Provider.of<FavoriteListState>(context, listen: false).favoriteList.add(
-              Result(name: favorite['name'], url: favorite['url']),
-            );
-      }
-    }
-  }
+  // void getFavoriteList(BuildContext context) {
+  //   if (SharedManager.getString(SharedKeys.favorite) != null) {
+  //     Provider.of<FavoriteListState>(context, listen: false)
+  //         .favoriteList
+  //         .clear();
+  //     List jsonData =
+  //         jsonDecode(SharedManager.getString(SharedKeys.favorite).toString());
+  //     for (var favorite in jsonData) {
+  //       Provider.of<FavoriteListState>(context, listen: false).favoriteList.add(
+  //             Result(name: favorite['name'], url: favorite['url']),
+  //           );
+  //     }
+  //   }
+  // }
 
   // List<FavouritePokemon> favouritePokemonList = [];
 

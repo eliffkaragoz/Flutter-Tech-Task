@@ -1,10 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:pokemon/views/pokemon_list/pokemon_list_view.dart';
 
+import '../../core/data/model/pokemon.dart';
+import '../../core/init/cache/user_cache_manager.dart';
 import '../../core/provider/favorite_list_state.dart';
 
-class FavoriteListView extends StatelessWidget {
+class FavoriteListView extends StatefulWidget {
   const FavoriteListView({super.key});
+
+  @override
+  State<FavoriteListView> createState() => _FavoriteListViewState();
+}
+
+class _FavoriteListViewState extends State<FavoriteListView> {
+  late final ICacheManager<Result> cacheManager;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
