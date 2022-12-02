@@ -1,9 +1,14 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:pokemon/core/components/button/custom_button_icon.dart';
 import 'package:pokemon/core/components/custom_scaffold.dart';
 import 'package:pokemon/core/components/text/custom_auto_size_text.dart';
+import 'package:pokemon/core/data/enum/shared_keys.dart';
 import 'package:pokemon/core/data/network/services/pokemon_service.dart';
+import 'package:pokemon/core/init/cache/shared_manager.dart';
+import 'package:provider/provider.dart';
 import '../../core/components/custom_circular_progress_indicator.dart';
 import '../../core/data/model/pokemon.dart';
 import '../../core/provider/favorite_list_state.dart';
@@ -22,7 +27,20 @@ class _PokemonListScreenState extends State<PokemonListScreen> {
   @override
   void initState() {
     super.initState();
+    getFavoriteList();
     futurePokemons = PokemonService().getAll();
+  }
+
+  void getFavoriteList() {
+    if (SharedManager.getString(SharedKeys.favorite) != null) {
+      List jsonData =
+          jsonDecode(SharedManager.getString(SharedKeys.favorite).toString());
+      for (var favorite in jsonData) {
+        Provider.of<FavoriteListState>(context, listen: false).favoriteList.add(
+              Result(name: favorite['name'], url: favorite['url']),
+            );
+      }
+    }
   }
 
   @override
@@ -60,6 +78,13 @@ class _PokemonListScreenState extends State<PokemonListScreen> {
                             onPressed: () {
                               provider.toggleFavorite(
                                   snapshot.data!.results[index]);
+
+                              String jsonData = jsonEncode(
+                                  Provider.of<FavoriteListState>(context,
+                                          listen: false)
+                                      .favoriteList);
+                              SharedManager.setString(
+                                  SharedKeys.favorite, jsonData);
                             },
                             icon:
                                 provider.isExist(snapshot.data!.results[index])

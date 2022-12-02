@@ -1,27 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../data/enum/shared_keys.dart';
 import '../data/model/pokemon.dart';
+import '../init/cache/shared_manager.dart';
 
 class FavoriteListState extends ChangeNotifier {
   final List<Result> _favoriteList = [];
+
   List<Result> get favoriteList => _favoriteList;
 
   void toggleFavorite(Result pokemon) {
     if (isExist(pokemon)) {
+      SharedManager.getString(SharedKeys.favorite).toString();
       _favoriteList.removeWhere((item) => item.name == pokemon.name);
     } else {
       _favoriteList.add(pokemon);
-
     }
     notifyListeners();
   }
 
   bool isExist(Result pokemon) {
-    // final isExist = _favoriteList[0]..contains(pokemon.name);
     for (var i = 0; i < _favoriteList.length; i++) {
       if (_favoriteList[i].name == pokemon.name) {
-        //  _favoriteList[i]
         return true;
       }
     }

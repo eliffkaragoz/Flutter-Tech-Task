@@ -1,6 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../data/enum/shared_keys.dart';
+import '../../data/model/pokemon.dart';
 
 class SharedManager {
   static SharedManager? _sharedManager;
@@ -28,6 +29,16 @@ class SharedManager {
   static bool getBool(SharedKeys key, {bool defValue = false}) {
     if (_preferences == null) return defValue;
     return _preferences!.getBool(key.toString()) ?? defValue;
+  }
+
+  static Future<bool>? setString(SharedKeys key, String value) {
+    if (_preferences == null) return null;
+    return _preferences!.setString(key.toString(), value);
+  }
+
+  static String? getString(SharedKeys key, {String defValue = 'boşş'}) {
+    if (_preferences == null) return defValue;
+    return _preferences!.getString(key.toString());
   }
 
   static Future<bool>? setList(SharedKeys key, List<String> value) {
