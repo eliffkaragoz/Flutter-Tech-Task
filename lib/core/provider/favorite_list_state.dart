@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -10,9 +12,8 @@ class FavoriteListState extends ChangeNotifier {
 
   List<Result> get favoriteList => _favoriteList;
 
-  void toggleFavorite(Result pokemon) {
+  toggleFavorite(Result pokemon, BuildContext context) {
     if (isExist(pokemon)) {
-      SharedManager.getString(SharedKeys.favorite).toString();
       _favoriteList.removeWhere((item) => item.name == pokemon.name);
     } else {
       _favoriteList.add(pokemon);
@@ -37,6 +38,21 @@ class FavoriteListState extends ChangeNotifier {
       context,
       listen: listen,
     );
+  }
+
+  void getFavoriteList(BuildContext context) {
+    if (SharedManager.getString(SharedKeys.favorite) != null) {
+      Provider.of<FavoriteListState>(context, listen: false)
+          .favoriteList
+          .clear();
+      List jsonData =
+          jsonDecode(SharedManager.getString(SharedKeys.favorite).toString());
+      for (var favorite in jsonData) {
+        Provider.of<FavoriteListState>(context, listen: false).favoriteList.add(
+              Result(name: favorite['name'], url: favorite['url']),
+            );
+      }
+    }
   }
 
   // List<FavouritePokemon> favouritePokemonList = [];
