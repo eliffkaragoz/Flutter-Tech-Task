@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:pokemon/core/data/model/pokemon.dart';
-import 'package:pokemon/core/data/model/pokemon_detail.dart';
+import '../../model/pokemon.dart';
+import '../../model/pokemon_detail.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'rest_client.g.dart';

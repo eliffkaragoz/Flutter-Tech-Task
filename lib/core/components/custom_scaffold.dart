@@ -14,7 +14,7 @@ class CustomScaffold extends StatelessWidget {
   final Color? backgroundColor;
   final Widget? bottomNavigationBar;
   final bool? isDrawer;
-  final AppBar? appBar;
+  final PreferredSize? appBar;
   @override
   Widget build(BuildContext context) {
     return SafeArea(

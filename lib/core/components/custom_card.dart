@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pokemon/core/constants/radius_constant.dart';
+
+import '../constants/color_constant.dart';
 
 class CustomCard extends StatelessWidget {
   const CustomCard({
@@ -28,14 +31,14 @@ class CustomCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: elevation ?? 0,
-      color: color,
+      color: ColorConstant.instance.appGrey1,
       shadowColor: shadowColor,
       shape: RoundedRectangleBorder(
         side: BorderSide(color: borderSideColor ?? Colors.transparent),
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: RadiusConstant.instance.cardBorderRadius,
       ),
       child: SizedBox(
-        width: width,
+        width: width ?? double.infinity,
         height: height,
         child: child,
       ),

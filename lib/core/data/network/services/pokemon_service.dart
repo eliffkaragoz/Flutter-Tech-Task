@@ -1,7 +1,7 @@
-import 'package:pokemon/core/data/model/pokemon.dart';
-import 'package:pokemon/core/data/model/pokemon_detail.dart';
+import '../../model/pokemon.dart';
+import '../../model/pokemon_detail.dart';
 
-import '../../../base/base_service.dart';
+import '../../../base/retrofit_service.dart';
 
 class PokemonService extends IRetrofitService {
   @override

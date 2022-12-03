@@ -19,13 +19,11 @@ class CustomChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Chip(
-      backgroundColor: backgroundColor,
-      shape: RoundedRectangleBorder(
-        borderRadius: borderRadius ?? RadiusConstant.instance.chipRadius,
-      ),
+      backgroundColor: ColorConstant.instance.appBlue,
+      elevation: 10,
       label: CustomText(
         text: text,
-        color: textColor ?? ColorConstant.instance.appWhite,
+        color: ColorConstant.instance.appGrey2,
       ),
     );
   }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
+import 'text/custom_auto_size_text.dart';
+import 'package:provider/provider.dart';
 
-import '../../../../core/constants/constant_libary.dart';
-import 'button/button_libary.dart';
-import 'text/text_libary.dart';
+import '../provider/bottom_nav_bar_state.dart';
 
 class CustomAppBar extends PreferredSize {
   const CustomAppBar({
@@ -14,44 +14,33 @@ class CustomAppBar extends PreferredSize {
 
   static PreferredSize customAppBar({
     required BuildContext context,
-    String? titleText,
-    Widget? leading,
-    Widget? trailing,
-    bool? isBackIcon,
-    bool? isTrailing,
+    bool? isBackButton,
+    required String title,
+    Widget? action,
   }) {
     return PreferredSize(
       preferredSize: const Size.fromHeight(55),
       child: AppBar(
-        title: Row(
-          children: [
-            context.emptySizedWidthBoxHigh,
-            CustomText(
-              textAlign: TextAlign.center,
-              text: titleText ?? '',
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-            ),
-          ],
-        ),
-        leadingWidth: context.dynamicWidth(0.3),
-        leading: leading ??
-            CustomTextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              text: "text",
-              child: Row(
-                children: [
-                  Icon(Icons.arrow_back_ios,
-                      color: ColorConstant.instance.appBlue),
-                  CustomText(
-                    text: "Back",
-                    color: ColorConstant.instance.appBlue,
-                  )
-                ],
+        toolbarHeight: context.dynamicHeight(0.1),
+        elevation: 1,
+        automaticallyImplyLeading: isBackButton ?? false,
+        title: context.watch<BottomNavigationBarState>().currentPage == 0
+            ? Padding(
+                padding: context.onlyLeftPaddingNormal,
+                child: CustomText(
+                  text: title,
+                  fontSize: 20,
+                ),
+              )
+            : Padding(
+                padding: context.onlyLeftPaddingNormal,
+                child: CustomText(
+                  text: title,
+                  fontSize: 20,
+                ),
               ),
-            ),
         actions: [
-          trailing ?? const SizedBox(),
+          Padding(padding: context.onlyRightPaddingMedium, child: action),
         ],
       ),
     );

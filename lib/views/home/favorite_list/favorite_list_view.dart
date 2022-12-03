@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/adapters.dart';
-import 'package:pokemon/views/customs/pokemon_card.dart';
+import '../../../core/components/custom_scaffold.dart';
+import '../../customs/pokemon_card.dart';
 import 'package:kartal/kartal.dart';
+
+import '../../../core/init/cache/pokemon_detail_cache_manager.dart';
 
 class FavoriteListView extends StatefulWidget {
   const FavoriteListView({super.key});
@@ -13,13 +15,15 @@ class FavoriteListView extends StatefulWidget {
 class _FavoriteListViewState extends State<FavoriteListView> {
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder(
-      valueListenable: Hive.box('favorite').listenable(),
-      builder: (context, box, child) {
-        List datas = List.from(box.values);
-        return SizedBox(
-            height: context.dynamicHeight(1),
+    return CustomScaffold(
+      body: ValueListenableBuilder(
+        valueListenable: PokemonDetailCacheManager().listenable(),
+        builder: (context, box, child) {
+          List datas = List.from(PokemonDetailCacheManager().getValues());
+          return Padding(
+            padding: context.onlyTopPaddingMedium,
             child: GridView.builder(
+              physics: const BouncingScrollPhysics(),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 mainAxisSpacing: context.dynamicHeight(0.02),
@@ -27,13 +31,15 @@ class _FavoriteListViewState extends State<FavoriteListView> {
               ),
               itemCount: datas.length,
               itemBuilder: (context, index) {
-                return BuildCard(
+                return PokemonCard(
                   index: '#00$index',
                   data: datas[index],
                 );
               },
-            ));
-      },
+            ),
+          );
+        },
+      ),
     );
   }
 }

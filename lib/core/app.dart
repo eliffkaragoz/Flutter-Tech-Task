@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokemon/core/provider/multi_provider_init.dart';
+import 'provider/multi_provider_init.dart';
 import 'package:provider/provider.dart';
 
 import 'init/routes/on_generate_routes.dart';

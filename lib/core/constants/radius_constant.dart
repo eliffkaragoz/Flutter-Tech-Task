@@ -6,6 +6,8 @@ class RadiusConstant {
   RadiusConstant._init();
 
   BorderRadiusGeometry buttonElevatedBorderRadius = BorderRadius.circular(5);
+
+  BorderRadiusGeometry cardBorderRadius = BorderRadius.circular(15);
   double buttonIconSplashRadius = 30;
   double textFieldFormBorderRadius = 4.0;
   BorderRadiusGeometry chipRadius = const BorderRadius.all(Radius.circular(5));

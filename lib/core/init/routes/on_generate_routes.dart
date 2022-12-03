@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../views/home/home.dart';
 
-import '../../../views/splash_view.dart';
+import '../../../views/authentication/splash_view.dart';
 
 class NavigationRoute {
   NavigationRoute._init();

@@ -1,0 +1,1 @@
+enum EnumCache { favoriteBox }
