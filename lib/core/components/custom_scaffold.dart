@@ -8,19 +8,18 @@ class CustomScaffold extends StatelessWidget {
     this.backgroundColor,
     this.bottomNavigationBar,
     this.isDrawer,
+    this.appBar,
   });
   final Widget body;
   final Color? backgroundColor;
   final Widget? bottomNavigationBar;
   final bool? isDrawer;
+  final AppBar? appBar;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.black12,
-          elevation: 0,
-        ),
+        appBar: appBar,
         backgroundColor: backgroundColor,
         bottomNavigationBar: bottomNavigationBar,
         body: Center(

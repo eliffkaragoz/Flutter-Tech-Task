@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:pokemon/core/init/cache/user_cache_manager.dart';
 import 'package:provider/provider.dart';
 
 import '../data/enum/shared_keys.dart';
@@ -8,27 +10,41 @@ import '../data/model/pokemon.dart';
 import '../init/cache/shared_manager.dart';
 
 class FavoriteListState extends ChangeNotifier {
-  final List<Result> _favoriteList = [];
+  int _favoriteItemCount = 0;
+  get favoriteItemCount => _favoriteItemCount;
 
-  List<Result> get favoriteList => _favoriteList;
-
-  toggleFavorite(Result pokemon, BuildContext context) {
-    if (isExist(pokemon)) {
-      _favoriteList.removeWhere((item) => item.name == pokemon.name);
-    } else {
-      _favoriteList.add(pokemon);
-    }
+  increaseCount() {
+    _favoriteItemCount = Hive.box('favorite').values.length;
     notifyListeners();
   }
 
-  bool isExist(Result pokemon) {
-    for (var i = 0; i < _favoriteList.length; i++) {
-      if (_favoriteList[i].name == pokemon.name) {
-        return true;
-      }
-    }
-    return false;
-  }
+  // final ICacheManager<Result> cacheManager = UserCacheManager('favoriteBox');
+
+  // initCache() async {
+  //   await cacheManager.init();
+  // }
+
+  // toggleFavorite({
+  //   required Result pokemon,
+  //   required String key,
+  // }) {
+  //   if (isExist(pokemon)) {
+  //     _favoriteList.removeWhere((item) => item.name == pokemon.name);
+  //   } else {
+  //     //_favoriteList.add(cacheManager.getItem(key)!);
+  //     _favoriteList.add(pokemon);
+  //   }
+  //   notifyListeners();
+  // }
+
+  // bool isExist(Result pokemon) {
+  //   for (var i = 0; i < _favoriteList.length; i++) {
+  //     if (_favoriteList[i].name == pokemon.name) {
+  //       return true;
+  //     }
+  //   }
+  //   return false;
+  // }
 
   static FavoriteListState of(
     BuildContext context, {
