@@ -1,11 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:logger/logger.dart';
 
 import '../data/network/api/rest_client.dart';
 
 abstract class IRetrofitService<T> {
-  final logger = Logger();
-
   final client = RestClient(Dio());
 
   Future<T>? getAll() {

@@ -70,15 +70,7 @@ class _PokemonListScreenState extends State<PokemonListScreen> {
     required String index,
     required String url,
   }) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => CallPokemonDetail(
-          index: index,
-          isDetail: true,
-          url: url,
-        ),
-      ),
-    );
+    context.navigateToPage(
+        CallPokemonDetail(index: index, isDetail: true, url: url));
   }
 }

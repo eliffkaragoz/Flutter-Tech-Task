@@ -32,15 +32,12 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
-  kartal: ^2.7.0
-  auto_size_text: ^3.0.0
-  shared_preferences: ^2.0.15
-  provider: ^6.0.4
-  logger: ^1.1.0
+  kartal: ^2.7.0 # Context'in gücünü kullanarak çeşitli kolaylıklar sağlar. 
+  auto_size_text: ^3.0.0 # Text Widget'ın daha responsive kullanını sağlar.
+  provider: ^6.0.4 # Proje içindeki state yönetimi için kullandım.
   dio: ^4.0.6
-  retrofit: ^3.3.1
-  english_words: ^4.0.0
-  hive: ^2.2.3
+  retrofit: ^3.3.1 # API istemci oluşturucu 
+  hive: ^2.2.3 # Cihaz cache'ine veri kaydetmek için kullandım. 
   hive_flutter: ^1.1.0
   path_provider: ^2.0.11
 

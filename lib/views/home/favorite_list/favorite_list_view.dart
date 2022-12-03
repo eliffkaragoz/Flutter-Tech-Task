@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokemon/core/components/text/custom_auto_size_text.dart';
 import '../../../core/components/custom_scaffold.dart';
 import '../../customs/pokemon_card.dart';
 import 'package:kartal/kartal.dart';
@@ -31,10 +32,14 @@ class _FavoriteListViewState extends State<FavoriteListView> {
               ),
               itemCount: datas.length,
               itemBuilder: (context, index) {
-                return PokemonCard(
-                  index: '#00$index',
-                  data: datas[index],
-                );
+                return PokemonDetailCacheManager().getValues().isEmpty
+                    ? const Center(
+                        child: CustomText(text: 'Boş', color: Colors.black),
+                      )
+                    : PokemonCard(
+                        index: '#00$index',
+                        data: datas[index],
+                      );
               },
             ),
           );
