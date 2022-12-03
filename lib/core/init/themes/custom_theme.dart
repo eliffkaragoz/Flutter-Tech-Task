@@ -6,21 +6,29 @@ class CustomTheme {
   static ThemeData customThemeData(BuildContext context) {
     return ThemeData(
       iconTheme: IconThemeData(color: ColorConstant.instance.appBlue),
-      appBarTheme: AppBarTheme(
-        backgroundColor: ColorConstant.instance.appGrey2,
-        iconTheme: IconThemeData(
-          color: ColorConstant.instance.appBlack,
-        ),
-        toolbarTextStyle: TextStyle(color: ColorConstant.instance.appBlack),
-        titleTextStyle: TextStyle(color: ColorConstant.instance.appBlack),
-      ),
+      appBarTheme: _buildAppBarTheme(),
       scaffoldBackgroundColor: ColorConstant.instance.appGrey2,
-      bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          selectedIconTheme: IconThemeData(
-            color: ColorConstant.instance.appBlue,
-          ),
-          selectedItemColor: ColorConstant.instance.appBlue),
+      bottomNavigationBarTheme: _buildBottomNavigationBarThemeData(),
       backgroundColor: ColorConstant.instance.appGrey2,
+    );
+  }
+
+  static BottomNavigationBarThemeData _buildBottomNavigationBarThemeData() {
+    return BottomNavigationBarThemeData(
+        selectedIconTheme: IconThemeData(
+          color: ColorConstant.instance.appBlue,
+        ),
+        selectedItemColor: ColorConstant.instance.appBlue);
+  }
+
+  static AppBarTheme _buildAppBarTheme() {
+    return AppBarTheme(
+      backgroundColor: ColorConstant.instance.appGrey2,
+      iconTheme: IconThemeData(
+        color: ColorConstant.instance.appBlack,
+      ),
+      toolbarTextStyle: TextStyle(color: ColorConstant.instance.appBlack),
+      titleTextStyle: TextStyle(color: ColorConstant.instance.appBlack),
     );
   }
 }
