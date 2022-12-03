@@ -1,16 +1,37 @@
-# pokemon
 
-A new Flutter project.
+# Pokédex-App 
 
-## Getting Started
+## API Usage
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+### Fetch All Items
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+```
+  https://pokeapi.co/api/v2/pokemon 
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Fetch  Item
+
+```
+   https://pokeapi.co/api/v2/pokemon/${id}
+ ```
+
+  
+## I used the in this project: 
+
+-> Provider
+
+-> Hive DB
+
+-> Retrofit 
+  
+## Screenshots
+
+![image](https://user-images.githubusercontent.com/75577514/205459765-d7f2f23e-c9af-4873-90d9-d05d246faf60.png)
+
+![image](https://user-images.githubusercontent.com/75577514/205459952-0766147a-5cac-4ad6-a115-557681834262.png)
+
+![image](https://user-images.githubusercontent.com/75577514/205459965-f12fc2f1-67b3-4c93-9fc6-c833d974af5b.png)
+
+![image](https://user-images.githubusercontent.com/75577514/205459850-ad9532b0-6915-40ea-8ad0-7a54d5760178.png)
+
