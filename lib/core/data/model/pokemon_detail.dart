@@ -4,12 +4,16 @@
 
 import 'dart:convert';
 
+import 'package:hive/hive.dart';
+part 'pokemon_detail.g.dart';
+
 PokemonDetailModel pokemonDetailModelFromJson(String str) =>
     PokemonDetailModel.fromJson(json.decode(str));
 
 String pokemonDetailModelToJson(PokemonDetailModel data) =>
     json.encode(data.toJson());
 
+@HiveType(typeId: 0)
 class PokemonDetailModel {
   PokemonDetailModel({
     required this.abilities,
@@ -32,23 +36,41 @@ class PokemonDetailModel {
     required this.weight,
   });
 
+  @HiveField(0)
   List<Ability> abilities;
+  @HiveField(1)
   int baseExperience;
+  @HiveField(2)
   List<Species> forms;
+  @HiveField(3)
   List<GameIndex> gameIndices;
+  @HiveField(4)
   int height;
+  @HiveField(5)
   List<dynamic> heldItems;
+  @HiveField(6)
   int id;
+  @HiveField(7)
   bool isDefault;
+  @HiveField(8)
   String locationAreaEncounters;
+  @HiveField(9)
   List<Move> moves;
+  @HiveField(10)
   String name;
+  @HiveField(11)
   int order;
+  @HiveField(12)
   List<dynamic> pastTypes;
+  @HiveField(13)
   Species species;
+  @HiveField(14)
   Sprites sprites;
+  @HiveField(15)
   List<Stat> stats;
+  @HiveField(16)
   List<Type> types;
+  @HiveField(17)
   int weight;
 
   factory PokemonDetailModel.fromJson(Map<String, dynamic> json) =>
@@ -98,15 +120,18 @@ class PokemonDetailModel {
       };
 }
 
+@HiveType(typeId: 1)
 class Ability {
   Ability({
     required this.ability,
     required this.isHidden,
     required this.slot,
   });
-
+  @HiveField(0)
   Species ability;
+  @HiveField(1)
   bool isHidden;
+  @HiveField(2)
   int slot;
 
   factory Ability.fromJson(Map<String, dynamic> json) => Ability(
@@ -122,13 +147,15 @@ class Ability {
       };
 }
 
+@HiveType(typeId: 2)
 class Species {
   Species({
     required this.name,
     required this.url,
   });
-
+  @HiveField(0)
   String name;
+  @HiveField(1)
   String url;
 
   factory Species.fromJson(Map<String, dynamic> json) => Species(
@@ -142,13 +169,15 @@ class Species {
       };
 }
 
+@HiveType(typeId: 3)
 class GameIndex {
   GameIndex({
     required this.gameIndex,
     required this.version,
   });
-
+  @HiveField(0)
   int gameIndex;
+  @HiveField(1)
   Species version;
 
   factory GameIndex.fromJson(Map<String, dynamic> json) => GameIndex(
@@ -162,13 +191,15 @@ class GameIndex {
       };
 }
 
+@HiveType(typeId: 4)
 class Move {
   Move({
     required this.move,
     required this.versionGroupDetails,
   });
-
+  @HiveField(0)
   Species move;
+  @HiveField(1)
   List<VersionGroupDetail> versionGroupDetails;
 
   factory Move.fromJson(Map<String, dynamic> json) => Move(
@@ -185,15 +216,18 @@ class Move {
       };
 }
 
+@HiveType(typeId: 5)
 class VersionGroupDetail {
   VersionGroupDetail({
     required this.levelLearnedAt,
     required this.moveLearnMethod,
     required this.versionGroup,
   });
-
+  @HiveField(0)
   int levelLearnedAt;
+  @HiveField(1)
   Species moveLearnMethod;
+  @HiveField(2)
   Species versionGroup;
 
   factory VersionGroupDetail.fromJson(Map<String, dynamic> json) =>
@@ -210,11 +244,12 @@ class VersionGroupDetail {
       };
 }
 
+@HiveType(typeId: 6)
 class GenerationV {
   GenerationV({
     required this.blackWhite,
   });
-
+  @HiveField(0)
   Sprites blackWhite;
 
   factory GenerationV.fromJson(Map<String, dynamic> json) => GenerationV(
@@ -226,15 +261,18 @@ class GenerationV {
       };
 }
 
+@HiveType(typeId: 7)
 class GenerationIv {
   GenerationIv({
     required this.diamondPearl,
     required this.heartgoldSoulsilver,
     required this.platinum,
   });
-
+  @HiveField(0)
   Sprites diamondPearl;
+  @HiveField(1)
   Sprites heartgoldSoulsilver;
+  @HiveField(2)
   Sprites platinum;
 
   factory GenerationIv.fromJson(Map<String, dynamic> json) => GenerationIv(
@@ -250,6 +288,7 @@ class GenerationIv {
       };
 }
 
+@HiveType(typeId: 8)
 class Versions {
   Versions({
     required this.generationI,
@@ -261,14 +300,21 @@ class Versions {
     required this.generationVii,
     required this.generationViii,
   });
-
+  @HiveField(0)
   GenerationI generationI;
+  @HiveField(1)
   GenerationIi generationIi;
+  @HiveField(2)
   GenerationIii generationIii;
+  @HiveField(3)
   GenerationIv generationIv;
+  @HiveField(4)
   GenerationV generationV;
+  @HiveField(5)
   Map<String, Home> generationVi;
+  @HiveField(6)
   GenerationVii generationVii;
+  @HiveField(7)
   GenerationViii generationViii;
 
   factory Versions.fromJson(Map<String, dynamic> json) => Versions(
@@ -296,6 +342,7 @@ class Versions {
       };
 }
 
+@HiveType(typeId: 9)
 class Sprites {
   Sprites({
     required this.backDefault,
@@ -311,16 +358,27 @@ class Sprites {
     required this.animated,
   });
 
+  @HiveField(0)
   String backDefault;
+  @HiveField(1)
   dynamic backFemale;
+  @HiveField(2)
   String backShiny;
+  @HiveField(3)
   dynamic backShinyFemale;
+  @HiveField(4)
   String frontDefault;
+  @HiveField(5)
   dynamic frontFemale;
+  @HiveField(6)
   String frontShiny;
+  @HiveField(7)
   dynamic frontShinyFemale;
+  @HiveField(8)
   Other? other;
+  @HiveField(9)
   Versions? versions;
+  @HiveField(10)
   Sprites? animated;
 
   factory Sprites.fromJson(Map<String, dynamic> json) => Sprites(
@@ -356,13 +414,15 @@ class Sprites {
       };
 }
 
+@HiveType(typeId: 10)
 class GenerationI {
   GenerationI({
     required this.redBlue,
     required this.yellow,
   });
-
+  @HiveField(0)
   RedBlue redBlue;
+  @HiveField(1)
   RedBlue yellow;
 
   factory GenerationI.fromJson(Map<String, dynamic> json) => GenerationI(
@@ -376,6 +436,7 @@ class GenerationI {
       };
 }
 
+@HiveType(typeId: 11)
 class RedBlue {
   RedBlue({
     required this.backDefault,
@@ -386,11 +447,17 @@ class RedBlue {
     required this.frontTransparent,
   });
 
+  @HiveField(0)
   String backDefault;
+  @HiveField(1)
   String backGray;
+  @HiveField(2)
   String backTransparent;
+  @HiveField(3)
   String frontDefault;
+  @HiveField(4)
   String frontGray;
+  @HiveField(5)
   String frontTransparent;
 
   factory RedBlue.fromJson(Map<String, dynamic> json) => RedBlue(
@@ -412,6 +479,7 @@ class RedBlue {
       };
 }
 
+@HiveType(typeId: 12)
 class GenerationIi {
   GenerationIi({
     required this.crystal,
@@ -419,8 +487,11 @@ class GenerationIi {
     required this.silver,
   });
 
+  @HiveField(0)
   Crystal crystal;
+  @HiveField(1)
   Gold gold;
+  @HiveField(2)
   Gold silver;
 
   factory GenerationIi.fromJson(Map<String, dynamic> json) => GenerationIi(
@@ -436,6 +507,7 @@ class GenerationIi {
       };
 }
 
+@HiveType(typeId: 13)
 class Crystal {
   Crystal({
     required this.backDefault,
@@ -448,13 +520,21 @@ class Crystal {
     required this.frontTransparent,
   });
 
+  @HiveField(0)
   String backDefault;
+  @HiveField(1)
   String backShiny;
+  @HiveField(2)
   String backShinyTransparent;
+  @HiveField(3)
   String backTransparent;
+  @HiveField(4)
   String frontDefault;
+  @HiveField(5)
   String frontShiny;
+  @HiveField(6)
   String frontShinyTransparent;
+  @HiveField(7)
   String frontTransparent;
 
   factory Crystal.fromJson(Map<String, dynamic> json) => Crystal(
@@ -480,6 +560,7 @@ class Crystal {
       };
 }
 
+@HiveType(typeId: 14)
 class Gold {
   Gold({
     required this.backDefault,
@@ -489,10 +570,15 @@ class Gold {
     required this.frontTransparent,
   });
 
+  @HiveField(0)
   String backDefault;
+  @HiveField(1)
   String backShiny;
+  @HiveField(2)
   String frontDefault;
+  @HiveField(3)
   String frontShiny;
+  @HiveField(4)
   String frontTransparent;
 
   factory Gold.fromJson(Map<String, dynamic> json) => Gold(
@@ -508,10 +594,11 @@ class Gold {
         "back_shiny": backShiny,
         "front_default": frontDefault,
         "front_shiny": frontShiny,
-        "front_transparent": frontTransparent ?? "null",
+        "front_transparent": frontTransparent,
       };
 }
 
+@HiveType(typeId: 15)
 class GenerationIii {
   GenerationIii({
     required this.emerald,
@@ -519,8 +606,11 @@ class GenerationIii {
     required this.rubySapphire,
   });
 
+  @HiveField(0)
   Emerald emerald;
+  @HiveField(1)
   Gold fireredLeafgreen;
+  @HiveField(2)
   Gold rubySapphire;
 
   factory GenerationIii.fromJson(Map<String, dynamic> json) => GenerationIii(
@@ -536,13 +626,16 @@ class GenerationIii {
       };
 }
 
+@HiveType(typeId: 16)
 class Emerald {
   Emerald({
     required this.frontDefault,
     required this.frontShiny,
   });
 
+  @HiveField(0)
   String frontDefault;
+  @HiveField(1)
   String frontShiny;
 
   factory Emerald.fromJson(Map<String, dynamic> json) => Emerald(
@@ -556,6 +649,7 @@ class Emerald {
       };
 }
 
+@HiveType(typeId: 17)
 class Home {
   Home({
     required this.frontDefault,
@@ -564,9 +658,13 @@ class Home {
     required this.frontShinyFemale,
   });
 
+  @HiveField(0)
   String frontDefault;
+  @HiveField(1)
   dynamic frontFemale;
+  @HiveField(2)
   String frontShiny;
+  @HiveField(3)
   dynamic frontShinyFemale;
 
   factory Home.fromJson(Map<String, dynamic> json) => Home(
@@ -584,13 +682,16 @@ class Home {
       };
 }
 
+@HiveType(typeId: 18)
 class GenerationVii {
   GenerationVii({
     required this.icons,
     required this.ultraSunUltraMoon,
   });
 
+  @HiveField(0)
   DreamWorld icons;
+  @HiveField(1)
   Home ultraSunUltraMoon;
 
   factory GenerationVii.fromJson(Map<String, dynamic> json) => GenerationVii(
@@ -604,13 +705,16 @@ class GenerationVii {
       };
 }
 
+@HiveType(typeId: 19)
 class DreamWorld {
   DreamWorld({
     required this.frontDefault,
     required this.frontFemale,
   });
 
+  @HiveField(0)
   String frontDefault;
+  @HiveField(1)
   dynamic frontFemale;
 
   factory DreamWorld.fromJson(Map<String, dynamic> json) => DreamWorld(
@@ -624,11 +728,13 @@ class DreamWorld {
       };
 }
 
+@HiveType(typeId: 20)
 class GenerationViii {
   GenerationViii({
     required this.icons,
   });
 
+  @HiveField(0)
   DreamWorld icons;
 
   factory GenerationViii.fromJson(Map<String, dynamic> json) => GenerationViii(
@@ -640,6 +746,7 @@ class GenerationViii {
       };
 }
 
+@HiveType(typeId: 21)
 class Other {
   Other({
     required this.dreamWorld,
@@ -647,8 +754,11 @@ class Other {
     required this.officialArtwork,
   });
 
+  @HiveField(0)
   DreamWorld dreamWorld;
+  @HiveField(1)
   Home home;
+  @HiveField(2)
   OfficialArtwork officialArtwork;
 
   factory Other.fromJson(Map<String, dynamic> json) => Other(
@@ -664,11 +774,13 @@ class Other {
       };
 }
 
+@HiveType(typeId: 22)
 class OfficialArtwork {
   OfficialArtwork({
     required this.frontDefault,
   });
 
+  @HiveField(0)
   String frontDefault;
 
   factory OfficialArtwork.fromJson(Map<String, dynamic> json) =>
@@ -681,6 +793,7 @@ class OfficialArtwork {
       };
 }
 
+@HiveType(typeId: 23)
 class Stat {
   Stat({
     required this.baseStat,
@@ -688,8 +801,11 @@ class Stat {
     required this.stat,
   });
 
+  @HiveField(0)
   int baseStat;
+  @HiveField(1)
   int effort;
+  @HiveField(2)
   Species stat;
 
   factory Stat.fromJson(Map<String, dynamic> json) => Stat(
@@ -705,13 +821,16 @@ class Stat {
       };
 }
 
+@HiveType(typeId: 24, adapterName: 'MyTypeAdapter')
 class Type {
   Type({
     required this.slot,
     required this.type,
   });
 
+  @HiveField(0)
   int slot;
+  @HiveField(1)
   Species type;
 
   factory Type.fromJson(Map<String, dynamic> json) => Type(

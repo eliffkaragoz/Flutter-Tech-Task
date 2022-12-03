@@ -16,9 +16,6 @@ class NavigationRoute {
       case "/HomeView":
         return _buildMaterialPageRoute(const HomeView());
 
-      // case "/PokemonDetailView":
-      //   return _buildMaterialPageRoute(const PokemonDetailView());
-
       default:
         return _buildMaterialPageRoute(
           Text('No route defined for ${settings.name}'),

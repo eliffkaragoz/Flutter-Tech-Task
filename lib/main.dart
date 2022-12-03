@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:pokemon/core/data/model/pokemon.dart';
+import 'package:pokemon/core/init/cache/user_cache_manager.dart';
 
 import '../../../core/constants/constant_libary.dart';
 import 'core/app.dart';
+import 'core/data/model/pokemon_detail.dart';
 
 void main() async {
   SystemChrome.setSystemUIOverlayStyle(
@@ -14,9 +15,7 @@ void main() async {
   );
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
-  Hive.registerAdapter(ResultAdapter());
-
-  await Hive.openBox('favorite');
-//  await Hive.openBox('testBox');
+  CacheManager().registerAdapters();
+  CacheManager().openBox();
   runApp(const App());
 }

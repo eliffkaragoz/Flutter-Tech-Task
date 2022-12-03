@@ -40,7 +40,7 @@ class Pokemon {
       };
 }
 
-@HiveType(typeId: 0)
+@HiveType(typeId: 25)
 class Result {
   Result({
     required this.name,

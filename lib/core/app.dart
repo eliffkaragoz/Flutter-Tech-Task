@@ -3,6 +3,7 @@ import 'package:pokemon/core/provider/multi_provider_init.dart';
 import 'package:provider/provider.dart';
 
 import 'init/routes/on_generate_routes.dart';
+import 'init/themes/custom_theme.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class App extends StatelessWidget {
         onGenerateRoute: NavigationRoute.instance.generateRoute,
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
-        //theme: ,
+        theme: CustomTheme.customThemeData(context),
       ),
     );
   }

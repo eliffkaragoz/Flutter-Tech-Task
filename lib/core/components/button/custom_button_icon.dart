@@ -29,7 +29,7 @@ class CustomIconButton extends StatelessWidget {
       tooltip: tooltip ?? "",
       onPressed: onPressed,
       icon: Icon(icon),
-      color: color ?? ColorConstant.instance.appBlue,
+      color: color,
       iconSize: iconSize,
       splashColor: splashColor,
       highlightColor: highlightColor,
